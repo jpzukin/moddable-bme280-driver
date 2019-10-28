@@ -59,18 +59,20 @@ $ git clone https://github.com/jpzukin/moddalbe-bme280-driver bme280
 
 ```json
 {
-  "include": {
+  "include": [
     "$(MODDABLE)/examples/manifest_base.json",
     "$(MODDABLE)/examples/manifest_piu.json",
     "./bme280/manifest.json"
-  },
+  ],
   "modules": {
     "*": "./main"
   },
   "resources": {
-    "$(MODDABLE)/examples/assets/fonts/OpenSans-Semibold-28"
+    "*-alpha": [
+      "$(MODDABLE)/examples/assets/fonts/OpenSans-Semibold-28"
+    ]
   }
-}
+} 
 ```
 
 ### 実装例
@@ -83,7 +85,7 @@ $ git clone https://github.com/jpzukin/moddalbe-bme280-driver bme280
 4. センサーモードを設定する
 5. センサーから計測値を読み出す
 6. それぞれのプロパティから計測値を取得する
-7. 5. 6.を一定間隔で繰り返し実行する
+7. 5と6を一定間隔で繰り返し実行する
 
 定数、プロパティ、メソッドについては、詳細を参照してしてください。
 
@@ -112,6 +114,7 @@ export default application = new Application(null, {
 const bme280 = new BME280();
 
 // 3) センサーのパラメータを設定する
+// Indoor navigation
 bme280.setSensorSettings({
   osrTemperature: BME280.OVERSAMPLING_X2,
   osrPressure: BME280.OVERSAMPLING_X16,
@@ -163,11 +166,15 @@ BME280 は２つの I2C アドレスを持っています。プライマリー�
 
 ```json
   ...
-  "defines": {
-    "bme280": {
-      "secondary_addr": true,
-      "sda_pin": 21,
-      "scl_pin": 22
+  "platforms": {
+    "esp32": {
+      "defines": {
+        "bme280": {
+          "secondary_addr": true,
+          "sda_pin": 21,
+          "scl_pin": 22
+        }
+      }
     }
   }
   ...

@@ -238,7 +238,7 @@ IIR フィルターに設定できる値
 
 このメソッドは、現在のセンサーモードを BME280 から読み出します。ライブラリ内部にバッファした値ではありません。
 
-戻り値は、 `SLEEP_MODE`、`NORMAL_MODE`、`FORCED_MODE`のいづれかです。
+戻り値は、`SLEEP_MODE`、`NORMAL_MODE`、`FORCED_MODE`のいづれかです。
 
 #### `setSensorMode([sensorMode])`
 

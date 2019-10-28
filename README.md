@@ -13,6 +13,13 @@
 
 ## 概要
 
+このライブラリは、BME280 センサーを制御する Moddable SDK ライブラリです。
+
+Moddable SDK は、Javascript でマイクロコントローラー用のアプリケーションを作成するための開発ツールとランタイムソフトウェアです。
+
+- [Moddale](https://www.moddable.com/)
+- [Moddable SDK - github](https://github.com/Moddable-OpenSource/moddable)
+
 BME280 は、Bosch Sensortec が提供している湿度、気圧、気温を測るセンサーです。それぞれの計測範囲は、気温が-40℃ から+85℃、湿度が 0 から 100%、気圧が 300 から 1100hPa です。
 
 BME280 は、I2C と SPI の両方のインターフェースが利用できますが、このライブラリは I2C のみに対応しています。
@@ -31,7 +38,7 @@ Bosch Sensortec が github で公開している API を利用して、制御と
 
 ## 参考資料
 
-データシートのバージョン 1.6 をベースに実装しています。
+BME280 データシートのバージョン 1.6 をベースに実装しています。
 
 - [Bosch Sensortec - BME280](https://www.bosch-sensortec.com/bst/products/all_products/bme280)
 
@@ -72,7 +79,7 @@ $ git clone https://github.com/jpzukin/moddalbe-bme280-driver bme280
       "$(MODDABLE)/examples/assets/fonts/OpenSans-Semibold-28"
     ]
   }
-} 
+}
 ```
 
 ### 実装例
@@ -85,7 +92,7 @@ $ git clone https://github.com/jpzukin/moddalbe-bme280-driver bme280
 4. センサーモードを設定する
 5. センサーから計測値を読み出す
 6. それぞれのプロパティから計測値を取得する
-7. 5と6を一定間隔で繰り返し実行する
+7. 5 と 6 を一定間隔で繰り返し実行する
 
 定数、プロパティ、メソッドについては、詳細を参照してしてください。
 
@@ -272,4 +279,3 @@ IIR フィルターに設定できる値
 ### ライセンスと免責事項
 
 Bosch Sensortec の API については`./api/LICENCE`の通りです。その他は、Moddalbe SDK と同様に、GNU Lesser General Public License version 3 以降です。
-

@@ -28,9 +28,9 @@ const bme280 = new BME280();
 // 3) センサーのパラメータを設定する
 // Indoor navigation
 bme280.setSensorSettings({
-  osrTemperature: BME280.OVERSAMPLING_X2,
-  osrPressure: BME280.OVERSAMPLING_X16,
-  osrHumidity: BME280.OVERSAMPLING_X1,
+  osrTemperature: BME280.OVERSAMPLING_2X,
+  osrPressure: BME280.OVERSAMPLING_16X,
+  osrHumidity: BME280.OVERSAMPLING_1X,
   filter: BME280.FILTER_COEFF_16,
   standbyTime: BME280.STANDBY_TIME_0_5_MS
 }); 

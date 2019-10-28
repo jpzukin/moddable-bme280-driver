@@ -123,9 +123,9 @@ const bme280 = new BME280();
 // 3) センサーのパラメータを設定する
 // Indoor navigation
 bme280.setSensorSettings({
-  osrTemperature: BME280.OVERSAMPLING_X2,
-  osrPressure: BME280.OVERSAMPLING_X16,
-  osrHumidity: BME280.OVERSAMPLING_X1,
+  osrTemperature: BME280.OVERSAMPLING_2X,
+  osrPressure: BME280.OVERSAMPLING_16X,
+  osrHumidity: BME280.OVERSAMPLING_1X,
   filter: BME280.FILTER_COEFF_16,
   standbyTime: BME280.STANDBY_TIME_0_5_MS
 });
@@ -204,10 +204,10 @@ BME280 は２つの I2C アドレスを持っています。プライマリー�
 |定数|説明|
 |---|---|
 |NO_OVERSAMPLING|計測しない|
-|OVERSAMPLING_X1|1 倍|
-|OVERSAMPLING_X2|2 倍|
-|OVERSAMPLING_X4|4 倍|
-|OVERSAMPLING_X16|16 倍|
+|OVERSAMPLING_1X|1 倍|
+|OVERSAMPLING_2X|2 倍|
+|OVERSAMPLING_4X|4 倍|
+|OVERSAMPLING_16X|16 倍|
 
 IIR フィルターに設定できる値
 

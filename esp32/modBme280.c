@@ -88,24 +88,24 @@ void xs_BME280_setSensorSettings(xsMachine *the)
                                : xsmcToInteger(xsVar(0));
 
     xsmcGet(xsVar(0), xsArg(0), xsID_osrPressure);
-    bme280->dev.settings.osr_t = (xsUndefinedType == xsmcTypeOf(xsVar(0)))
+    bme280->dev.settings.osr_p = (xsUndefinedType == xsmcTypeOf(xsVar(0)))
                                ? BME280_NO_OVERSAMPLING
                                : xsmcToInteger(xsVar(0));
 
     xsmcGet(xsVar(0), xsArg(0), xsID_osrHumidity);
-    bme280->dev.settings.osr_t = (xsUndefinedType == xsmcTypeOf(xsVar(0)))
+    bme280->dev.settings.osr_h = (xsUndefinedType == xsmcTypeOf(xsVar(0)))
                                ? BME280_NO_OVERSAMPLING
                                : xsmcToInteger(xsVar(0));
 
     xsmcGet(xsVar(0), xsArg(0), xsID_filter);
-    bme280->dev.settings.osr_t = (xsUndefinedType == xsmcTypeOf(xsVar(0)))
-                               ? BME280_FILTER_COEFF_OFF
-                               : xsmcToInteger(xsVar(0));
+    bme280->dev.settings.filter = (xsUndefinedType == xsmcTypeOf(xsVar(0)))
+                                ? BME280_FILTER_COEFF_OFF
+                                : xsmcToInteger(xsVar(0));
 
     xsmcGet(xsVar(0), xsArg(0), xsID_standbyTime);
-    bme280->dev.settings.osr_t = (xsUndefinedType == xsmcTypeOf(xsVar(0)))
-                               ? BME280_STANDBY_TIME_0_5_MS
-                               : xsmcToInteger(xsVar(0));
+    bme280->dev.settings.standby_time = (xsUndefinedType == xsmcTypeOf(xsVar(0)))
+                                      ? BME280_STANDBY_TIME_0_5_MS
+                                      : xsmcToInteger(xsVar(0));
 
     settings_sel = BME280_OSR_TEMP_SEL
                  | BME280_OSR_PRESS_SEL

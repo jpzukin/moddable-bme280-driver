@@ -67,7 +67,6 @@ void xs_BME280_setSensorSettings(xsMachine *the)
 {
   BME280Record *bme280 = xsmcGetHostChunk(xsThis);
   int8_t result = BME280_OK;
-  uint8_t settings_sel;
 
   xsmcVars(1);
 
@@ -78,7 +77,6 @@ void xs_BME280_setSensorSettings(xsMachine *the)
     bme280->dev.settings.osr_h = BME280_NO_OVERSAMPLING;
     bme280->dev.settings.filter = BME280_FILTER_COEFF_OFF;
     bme280->dev.settings.standby_time = BME280_STANDBY_TIME_0_5_MS;
-    settings_sel = 0;
   }
   else
   {
@@ -106,14 +104,9 @@ void xs_BME280_setSensorSettings(xsMachine *the)
     bme280->dev.settings.standby_time = (xsUndefinedType == xsmcTypeOf(xsVar(0)))
                                       ? BME280_STANDBY_TIME_0_5_MS
                                       : xsmcToInteger(xsVar(0));
-
-    settings_sel = BME280_OSR_TEMP_SEL
-                 | BME280_OSR_PRESS_SEL
-                 | BME280_OSR_HUM_SEL
-                 | BME280_FILTER_SEL;
   }
 
-  result = bme280_set_sensor_settings(settings_sel, &(bme280->dev));
+  result = bme280_set_sensor_settings(BME280_ALL_SETTINGS_SEL, &(bme280->dev));
   if (result != BME280_OK)
   {
     xsUnknownError("Faild to set sensor settings (%d)", result);
@@ -205,6 +198,9 @@ static int8_t readI2CBus(uint8_t id, uint8_t regAddr, uint8_t *data, uint16_t le
 static int8_t writeI2CBus(uint8_t id, uint8_t regAddr, uint8_t *data, uint16_t length)
 {
   /*
+   * When writing multiple bytes in I2C, bme280 does not
+   * automatically increment the address pointer.
+   *
    * Data provided by the Bosch Sensor API
    *
    * single byte:
@@ -230,19 +226,7 @@ static int8_t writeI2CBus(uint8_t id, uint8_t regAddr, uint8_t *data, uint16_t l
     return BME280_E_COMM_FAIL;
   }
 
-  /*
-   * When writing multiple bytes in I2C, bme280 does not
-   * automatically increment the address pointer.
-   */
-  for (int i=0; i<length-1; i++) {
-    result = modI2CWrite(&i2cConfig, &data[i], 1, false);
-    if (result)
-    {   
-      return BME280_E_COMM_FAIL;
-    }   
-  }
-
-  result = modI2CWrite(&i2cConfig, &data[length-1], 1, true);
+  result = modI2CWrite(&i2cConfig, data, length, true);
   if (result)
   {
     return BME280_E_COMM_FAIL;

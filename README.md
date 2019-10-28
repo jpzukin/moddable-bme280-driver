@@ -3,7 +3,7 @@
 ## 目次
 
 - [概要](#introduction)
-- [対応デバイス](#target-device)
+- [対応するデバイス](#supported-devices)
 - [参考資料](#reference-materials)
 - [利用方法](#usage)
 - [詳細](#details)
@@ -28,9 +28,9 @@ Bosch Sensortec が github で公開している API を利用して、制御と
 
 - [Bosch Sensortec - BME280_driver](https://github.com/BoschSensortec/BME280_driver)
 
-<a id="target-device"></a>
+<a id="supported-devices"></a>
 
-## 対応デバイス
+## 対応するデバイス
 
 現バージョンは、ESP32 ベースのデバイスにのみに対応しています。
 

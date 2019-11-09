@@ -219,14 +219,12 @@ static int8_t writeI2CBus(uint8_t id, uint8_t regAddr, uint8_t *data, uint16_t l
    */
 
   uint8_t result;
+  uint8_t buff[20]; // This size in Burst mode of Bosch API [bme280_set_regs()]
 
-  result = modI2CWrite(&i2cConfig, &regAddr, 1, false);
-  if (result)
-  {
-    return BME280_E_COMM_FAIL;
-  }
+  buff[0] = regAddr;
+  c_memcpy(&buff[1], data, length);
 
-  result = modI2CWrite(&i2cConfig, data, length, true);
+  result = modI2CWrite(&i2cConfig, buff, length+1, true);
   if (result)
   {
     return BME280_E_COMM_FAIL;

@@ -32,7 +32,7 @@ Bosch Sensortec が github で公開している API を利用して、制御と
 
 ## 対応するデバイス
 
-現バージョンは、ESP32 ベースのデバイスにのみに対応しています。
+現バージョンは、ESP32 および、ESP8266 ベースのデバイスに対応しています。
 
 <a id="reference-materials"></a>
 
@@ -62,7 +62,7 @@ $ git clone https://github.com/jpzukin/moddable-bme280-driver bme280
 
 次に、`manifest.json`の`include`プロパティに、このライブラリの`manifest.json`のパスを追加します。
 
-実装例(`example-bme280`の`manifest.json`):
+実装例(`example-bme280-m5stack`の`manifest.json`):
 
 ```json
 {

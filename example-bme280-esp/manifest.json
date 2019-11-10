@@ -1,0 +1,26 @@
+{
+  "include": [
+    "$(MODDABLE)/examples/manifest_base.json",
+    "$(MODDABLE)/examples/manifest_piu.json",
+    "../manifest.json"
+  ],
+  "modules": {
+    "*": "./main"
+  },
+  "resources": {
+    "*-alpha": [
+      "$(MODDABLE)/examples/assets/fonts/OpenSans-Semibold-28"
+    ]
+  },
+  "platforms": {
+    "esp": {
+      "defines": {
+        "bme280": {
+          "sda_pin": 4,
+          "scl_pin": 5 
+        }
+      }
+    }
+  }
+}
+

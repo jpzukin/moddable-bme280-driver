@@ -1,9 +1,7 @@
 #include "xsPlatform.h"
 #include "xsmc.h"
 #include "mc.xs.h"
-#include "xsHost.h"
 #include "mc.defines.h"
-#include "modGPIO.h"
 #include "modI2C.h"
 #include "../api/bme280.h"
 
